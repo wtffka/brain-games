@@ -1,6 +1,6 @@
 package hexlet.code;
 import java.util.Scanner;
-public class Even {
+public class EvenGame {
     private static final String YES = "yes";
     private static final String NO = "no";
     public static void isNumberEvenOrNot() {
