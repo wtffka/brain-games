@@ -18,13 +18,7 @@ public class CalcGame {
         while (scan.hasNextInt()) {
             var isCorrect = 0;
             var answer = scan.nextInt();
-            if (randomOperation == 0) {
-                isCorrect = gameLogic(answer, a, b, randomOperation, name);
-            }
-            if (randomOperation == 1) {
-                isCorrect = gameLogic(answer, a, b, randomOperation, name);
-            }
-            if (randomOperation == 2) {
+            if (randomOperation >= 0 && randomOperation < operationsQuantity) {
                 isCorrect = gameLogic(answer, a, b, randomOperation, name);
             }
             if (isCorrect == 0) {
