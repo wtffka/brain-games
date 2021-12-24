@@ -16,48 +16,28 @@ public class CalcGame {
         System.out.println("What is the result of the expression?");
         addInformation(a, randomOperation, b);
         while (scan.hasNextInt()) {
+            var isCorrect = 0;
             var answer = scan.nextInt();
             if (randomOperation == 0) {
-                if (a + b == answer) {
-                    System.out.println("Correct!");
-                    rightAnswers++;
-                } else {
-                    System.out.println(answer + " is wrong answer ;(. Correct answer was " + (a + b) + ".");
-                    System.out.println("Let's try again, " + name);
-                    rightAnswers = 0;
-                    return;
-                }
-                a = (int) (Math.random() * diapason);
-                b = (int) (Math.random() * diapason);
+                isCorrect = gameLogic(answer, a, b, randomOperation, name);
             }
             if (randomOperation == 1) {
-                if (a * b == answer) {
-                    System.out.println("Correct!");
-                    rightAnswers++;
-                } else {
-                    System.out.println(answer + " is wrong answer ;(. Correct answer was " + (a * b) + ".");
-                    System.out.println("Let's try again, " + name);
-                    return;
-                }
-                a = (int) (Math.random() * diapason);
-                b = (int) (Math.random() * diapason);
+                isCorrect = gameLogic(answer, a, b, randomOperation, name);
             }
             if (randomOperation == 2) {
-                if (a - b == answer) {
-                    System.out.println("Correct!");
-                    rightAnswers++;
-                } else {
-                    System.out.println(answer + " is wrong answer ;(. Correct answer was " + (a - b) + ".");
-                    System.out.println("Let's try again, " + name);
-                    return;
-                }
-                a = (int) (Math.random() * diapason);
-                b = (int) (Math.random() * diapason);
+                isCorrect = gameLogic(answer, a, b, randomOperation, name);
+            }
+            if (isCorrect == 0) {
+                return;
+            } else if (isCorrect == 1) {
+                rightAnswers++;
             }
             if (rightAnswers == maxRightAnswers) {
                 System.out.println("Congratulations, " + name + "!");
                 return;
             }
+            a = (int) (Math.random() * diapason);
+            b = (int) (Math.random() * diapason);
             randomOperation = (int) (Math.random() * operationsQuantity);
             addInformation(a, randomOperation, b);
         }
@@ -76,11 +56,22 @@ public class CalcGame {
         System.out.print("Your answer: ");
     }
 
-//    private static int newOperations(double a, double b, double c) {
-//        var diapason = 100;
-//        a = (int) (Math.random() * diapason);
-//        b = (int) (Math.random() * 3);
-//        c = (int) (Math.random() * diapason);
-//        return a, b, c;
-//    }
+    public static int gameLogic(int answer, int a, int b, int operation, String name) {
+        var result = 0;
+        if (operation == 0) {
+            result = a + b;
+        } else if (operation == 1) {
+            result = a * b;
+        } else if (operation == 2) {
+            result = a - b;
+        }
+        if (result == answer) {
+            System.out.println("Correct!");
+            return 1;
+        } else {
+            System.out.println(answer + " is wrong answer ;(. Correct answer was " + result + ".");
+            System.out.println("Let's try again, " + name);
+            return 0;
+        }
+    }
 }
