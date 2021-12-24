@@ -1,7 +1,7 @@
-package hexlet.code;
+package hexlet.code.games;
 import java.util.Scanner;
 
-public class Cli {
+public class GreetGame {
 
     public static String getName() {
         System.out.println("May I have your name? ");

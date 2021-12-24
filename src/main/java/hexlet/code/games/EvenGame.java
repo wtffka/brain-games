@@ -1,11 +1,13 @@
-package hexlet.code;
+package hexlet.code.games;
+import hexlet.code.Engine;
+
 import java.util.Scanner;
 
 public class EvenGame {
     private static final String YES = "yes";
     private static final String NO = "no";
     public static void isNumberEvenOrNot() {
-        var name = Cli.getName();
+        var name = GreetGame.getName();
         var rightAnswers = 0;
         final var diapason = 100; // Диапазон чисел для задачи от 1 до 99
         final var maxRightAnswers = 3;

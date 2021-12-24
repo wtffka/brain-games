@@ -1,4 +1,8 @@
 package hexlet.code;
+import hexlet.code.games.CalcGame;
+import hexlet.code.games.EvenGame;
+import hexlet.code.games.GreetGame;
+
 import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
@@ -15,7 +19,7 @@ public class App {
 
                 case greetGame:
                     System.out.println("Welcome to the Brain Games");
-                    Cli.getName();
+                    GreetGame.getName();
                     break;
 
                 case evenGame:

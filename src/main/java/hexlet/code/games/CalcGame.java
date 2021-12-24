@@ -1,10 +1,12 @@
-package hexlet.code;
+package hexlet.code.games;
+import hexlet.code.Engine;
+
 import java.util.Scanner;
 
 public class CalcGame {
 
     public static void randomCalcOperation() {
-        var name = Cli.getName();
+        var name = GreetGame.getName();
         final var diapason = 10; // Диапазон чисел для математических операций в этой игре.
         final var maxRightAnswers = 3;
         final var operationsQuantity = 3;
