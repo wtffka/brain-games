@@ -8,9 +8,9 @@ public class CalcGame {
         final var diapason = 10; // Диапазон чисел для математических операций в этой игре.
         final var maxRightAnswers = 3;
         final var operationsQuantity = 3;
-        var randomOperation = (int) (Math.random() * operationsQuantity);
-        var a = (int) (Math.random() * diapason);
-        var b = (int) (Math.random() * diapason);
+        var randomOperation = Engine.newRandomNumber(operationsQuantity);
+        var a = Engine.newRandomNumber(diapason);
+        var b = Engine.newRandomNumber(diapason);
         var rightAnswers = 0;
         Scanner scan = new Scanner(System.in);
         System.out.println("What is the result of the expression?");
@@ -19,20 +19,21 @@ public class CalcGame {
             var isCorrect = 0;
             var answer = scan.nextInt();
             if (randomOperation >= 0 && randomOperation < operationsQuantity) {
-                isCorrect = gameLogic(answer, a, b, randomOperation, name);
+                isCorrect = calcGameLogic(answer, a, b, randomOperation, name);
             }
             if (isCorrect == 0) {
                 return;
-            } else if (isCorrect == 1) {
+            } else {
                 rightAnswers++;
             }
             if (rightAnswers == maxRightAnswers) {
-                System.out.println("Congratulations, " + name + "!");
+                Engine.congratsPart(rightAnswers, maxRightAnswers, name);
                 return;
             }
-            a = (int) (Math.random() * diapason);
-            b = (int) (Math.random() * diapason);
-            randomOperation = (int) (Math.random() * operationsQuantity);
+
+            a = Engine.newRandomNumber(diapason);
+            b = Engine.newRandomNumber(diapason);
+            randomOperation = Engine.newRandomNumber(operationsQuantity);
             addInformation(a, randomOperation, b);
         }
     }
@@ -50,7 +51,7 @@ public class CalcGame {
         System.out.print("Your answer: ");
     }
 
-    public static int gameLogic(int answer, int a, int b, int operation, String name) {
+    public static int calcGameLogic(int answer, int a, int b, int operation, String name) {
         var result = 0;
         if (operation == 0) {
             result = a + b;
@@ -63,8 +64,7 @@ public class CalcGame {
             System.out.println("Correct!");
             return 1;
         } else {
-            System.out.println(answer + " is wrong answer ;(. Correct answer was " + result + ".");
-            System.out.println("Let's try again, " + name);
+            Engine.wrongPart(String.valueOf(answer), String.valueOf(result), name);
             return 0;
         }
     }
