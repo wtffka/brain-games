@@ -40,7 +40,7 @@ public class CalcGame {
         }
     }
 
-    private static void addInformation(double a, double b, double c) {
+    private static void addInformation(int a, int b, int c) {
         var operation = "";
         if (b == 0) {
             operation = "+";
@@ -49,7 +49,7 @@ public class CalcGame {
         } else if (b == 2) {
             operation = "-";
         }
-        System.out.println("Question: " + (int) a + " " + operation + " " + (int) c);
+        System.out.println("Question: " + a + " " + operation + " " + c);
         System.out.print("Your answer: ");
     }
 

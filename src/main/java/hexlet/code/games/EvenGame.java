@@ -44,8 +44,8 @@ public class EvenGame {
         }
     }
 
-    private static void addInformation(double a) {
-        System.out.println("Question: " + (int) a);
+    private static void addInformation(int a) {
+        System.out.println("Question: " + a);
         System.out.print("Your answer: ");
     }
 

@@ -1,6 +1,7 @@
 package hexlet.code;
 import hexlet.code.games.CalcGame;
 import hexlet.code.games.EvenGame;
+import hexlet.code.games.GCD;
 import hexlet.code.games.GreetGame;
 
 import java.util.Scanner;
@@ -9,6 +10,7 @@ public class App {
         final var greetGame = 1;
         final var evenGame = 2;
         final var calcGame = 3;
+        final var gcdGame = 4;
         introduction();
         Scanner scan = new Scanner(System.in);
         while (scan.hasNextInt()) {
@@ -32,6 +34,11 @@ public class App {
                     CalcGame.randomCalcOperation();
                     break;
 
+                case gcdGame:
+                    System.out.println("Welcome to the Brain Games");
+                    GCD.gcdGame();
+                    break;
+
                 default:
                     break;
             }
@@ -43,6 +50,7 @@ public class App {
         System.out.println("1 - Greet");
         System.out.println("2 - Even");
         System.out.println("3 - Calc");
+        System.out.println("4 - GCD");
         System.out.println("0 - Exit");
         System.out.print("Your choice: ");
     }
