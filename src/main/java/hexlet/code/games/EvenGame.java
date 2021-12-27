@@ -52,11 +52,15 @@ public class EvenGame {
     public static int evenGameLogic(boolean isEven, String answer, String name) {
         if (isEven) {
             System.out.println("Correct!");
+            return 1;
         } else {
-            Engine.wrongPart(answer, NO, name);
-            return 0;
+            if (answer.equals(YES)) {
+                Engine.wrongPart(answer, NO, name);
+            } else {
+                Engine.wrongPart(answer, YES, name);
+            }
         }
-        return 1;
+        return 0;
     }
 }
 

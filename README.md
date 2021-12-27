@@ -10,4 +10,7 @@
 
 Пример запуска программы с добавленной игрой Progression: https://asciinema.org/a/mIkqnRIgcWwzl1R2OsXbpIFlK
 
+Пример запуска программы с добавленной игрой Prime: https://asciinema.org/a/jX79ClXBcLC3dPItFP8KQs5p2
+
+
 
