@@ -64,8 +64,7 @@ public class GCDGame {
             System.out.println("Correct!");
             return 1;
         } else {
-            System.out.println(answer + " is wrong answer ;(. Correct answer was " + result + ".");
-            System.out.println("Let's try again, " + name);
+            Engine.congratsPart(name);
         }
         return 0;
     }
