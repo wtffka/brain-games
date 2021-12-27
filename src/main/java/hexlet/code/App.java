@@ -24,39 +24,39 @@ public class App {
                     return;
 
                 case greetGame:
-                    System.out.println("Welcome to the Brain Games");
+                    welcomePart();
                     GreetGame.getName();
                     break;
 
                 case evenGame:
-                    System.out.println("Welcome to the Brain Games");
+                    welcomePart();
                     EvenGame.isNumberEvenOrNot();
                     break;
 
                 case calcGame:
-                    System.out.println("Welcome to the Brain Games");
+                    welcomePart();
                     CalcGame.randomCalcOperation();
                     break;
 
                 case gcdGame:
-                    System.out.println("Welcome to the Brain Games");
+                    welcomePart();
                     GCDGame.gcdGame();
                     break;
 
                 case progression:
-                    System.out.println("Welcome to the Brain Games");
+                    welcomePart();
                     ProgressionGame.progressionGame();
                     break;
 
                 case prime:
-                    System.out.println("Welcome to the Brain Games");
+                    welcomePart();
                     PrimeGame.primeGame();
                     break;
 
                 default:
-                    break;
+                    return;
             }
-            introduction();
+            return;
         }
     }
     public static void introduction() {
@@ -69,5 +69,10 @@ public class App {
         System.out.println("6 - Prime");
         System.out.println("0 - Exit");
         System.out.print("Your choice: ");
+    }
+
+    public static void welcomePart() {
+        System.out.println();
+        System.out.println("Welcome to the Brain Games");
     }
 }
