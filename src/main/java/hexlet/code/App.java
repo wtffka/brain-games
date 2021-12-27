@@ -1,8 +1,9 @@
 package hexlet.code;
 import hexlet.code.games.CalcGame;
 import hexlet.code.games.EvenGame;
-import hexlet.code.games.GCD;
+import hexlet.code.games.GCDGame;
 import hexlet.code.games.GreetGame;
+import hexlet.code.games.ProgressionGame;
 
 import java.util.Scanner;
 public class App {
@@ -11,6 +12,7 @@ public class App {
         final var evenGame = 2;
         final var calcGame = 3;
         final var gcdGame = 4;
+        final var progression = 5;
         introduction();
         Scanner scan = new Scanner(System.in);
         while (scan.hasNextInt()) {
@@ -36,7 +38,12 @@ public class App {
 
                 case gcdGame:
                     System.out.println("Welcome to the Brain Games");
-                    GCD.gcdGame();
+                    GCDGame.gcdGame();
+                    break;
+
+                case progression:
+                    System.out.println("Welcome to the Brain Games");
+                    ProgressionGame.progressionGame();
                     break;
 
                 default:
@@ -51,6 +58,7 @@ public class App {
         System.out.println("2 - Even");
         System.out.println("3 - Calc");
         System.out.println("4 - GCD");
+        System.out.println("5 - Progression");
         System.out.println("0 - Exit");
         System.out.print("Your choice: ");
     }

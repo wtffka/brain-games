@@ -3,7 +3,7 @@ import hexlet.code.Engine;
 
 import java.util.Scanner;
 
-public class GCD {
+public class GCDGame {
     public static void gcdGame() {
         var name = GreetGame.getName();
         final var diapason = 100;
@@ -15,9 +15,8 @@ public class GCD {
         System.out.println("Find the greatest common divisor of given numbers.");
         addInformation(a, b);
         while (scan.hasNextInt()) {
-            var isCorrect = 0;
             var answer = scan.nextInt();
-            isCorrect = gcdGameLogic(a, b, name, answer);
+            var isCorrect = gcdGameLogic(a, b, name, answer);
             if (isCorrect == 0) {
                 return;
             } else {

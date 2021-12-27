@@ -8,3 +8,6 @@
 
 Пример запуска программы с добавленной игрой GCD: https://asciinema.org/a/P1My7DcEUr1A6GLgYADUruSUP
 
+Пример запуска программы с добавленной игрой Progression: https://asciinema.org/a/mIkqnRIgcWwzl1R2OsXbpIFlK
+
+
