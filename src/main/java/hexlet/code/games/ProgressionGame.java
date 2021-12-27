@@ -61,8 +61,7 @@ public class ProgressionGame {
             System.out.println("Correct!");
             return 1;
         } else {
-            System.out.println(answer + " is wrong answer ;(. Correct answer was " + missingResult + ".");
-            System.out.println("Let's try again, " + name);
+            Engine.wrongPart(String.valueOf(answer), String.valueOf(missingResult), name);
         }
         return 0;
     }
