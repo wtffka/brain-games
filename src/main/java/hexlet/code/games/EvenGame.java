@@ -36,7 +36,7 @@ public class EvenGame {
                 rightAnswers++;
             }
             if (rightAnswers == maxRightAnswers) {
-                Engine.congratsPart(rightAnswers, maxRightAnswers, name);
+                Engine.congratsPart(name);
                 return;
             }
             a = Engine.newRandomNumber(diapason);

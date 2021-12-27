@@ -25,7 +25,7 @@ public class ProgressionGame {
                 rightAnswers++;
             }
             if (rightAnswers == maxRightAnswers) {
-                Engine.congratsPart(rightAnswers, maxRightAnswers, name);
+                Engine.congratsPart(name);
                 return;
             }
             progressionLength = Engine.newRandomNumber(minProgressionLength) + minProgressionLength;
