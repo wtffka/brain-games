@@ -64,7 +64,7 @@ public class GCDGame {
             System.out.println("Correct!");
             return 1;
         } else {
-            Engine.congratsPart(name);
+            Engine.wrongPart(String.valueOf(answer), String.valueOf(result), name);
         }
         return 0;
     }
