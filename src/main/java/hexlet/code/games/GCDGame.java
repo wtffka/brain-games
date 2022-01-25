@@ -28,6 +28,10 @@ public class GCDGame {
             }
             a = Engine.newRandomNumber(diapason);
             b = Engine.newRandomNumber(diapason);
+            while (a == 0 || b == 0) {
+                a = Engine.newRandomNumber(diapason);
+                b = Engine.newRandomNumber(diapason);
+            }
             addInformation(a, b);
         }
 
