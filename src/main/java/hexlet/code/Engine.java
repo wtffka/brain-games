@@ -3,7 +3,7 @@ package hexlet.code;
 public class Engine {
 
     public static int newRandomNumber(int diapason) {
-        var a = (int) (Math.random() * diapason);
+        var a = (int) ((Math.random() * diapason) + 1);
         return a;
     }
 
@@ -24,6 +24,8 @@ public class Engine {
             result = a * b;
         } else if (operation == 2) {
             result = a - b;
+        } else if (operation > 2) {
+            result = a + b;
         }
         if (result == answer) {
             System.out.println("Correct!");

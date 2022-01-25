@@ -20,9 +20,7 @@ public class CalcGame {
         while (scan.hasNextInt()) {
             var isCorrect = 0;
             var answer = scan.nextInt();
-            if (randomOperation >= 0 && randomOperation < operationsQuantity) {
-                isCorrect = Engine.calcGameLogic(answer, a, b, randomOperation, name);
-            }
+            isCorrect = Engine.calcGameLogic(answer, a, b, randomOperation, name);
             if (isCorrect == 0) {
                 return;
             } else {
@@ -41,7 +39,7 @@ public class CalcGame {
     }
 
     private static void addInformation(int a, int b, int c) {
-        var operation = "";
+        var operation = "+";
         if (b == 0) {
             operation = "+";
         } else if (b == 1) {

@@ -8,7 +8,7 @@ public class PrimeGame {
     private static final String NO = "no";
     public static void primeGame() {
         var name = GreetGame.getName();
-        final var diapason = 100;
+        final var diapason = 50;
         final var maxRightAnswers = 3;
         var a = Engine.newRandomNumber(diapason);
         var rightAnswers = 0;
