@@ -21,7 +21,7 @@ public class CalcGame {
             var isCorrect = 0;
             var answer = scan.nextInt();
             if (randomOperation >= 0 && randomOperation < operationsQuantity) {
-                isCorrect = calcGameLogic(answer, a, b, randomOperation, name);
+                isCorrect = Engine.calcGameLogic(answer, a, b, randomOperation, name);
             }
             if (isCorrect == 0) {
                 return;
@@ -53,21 +53,4 @@ public class CalcGame {
         System.out.print("Your answer: ");
     }
 
-    public static int calcGameLogic(int answer, int a, int b, int operation, String name) {
-        var result = 0;
-        if (operation == 0) {
-            result = a + b;
-        } else if (operation == 1) {
-            result = a * b;
-        } else if (operation == 2) {
-            result = a - b;
-        }
-        if (result == answer) {
-            System.out.println("Correct!");
-            return 1;
-        } else {
-            Engine.wrongPart(String.valueOf(answer), String.valueOf(result), name);
-            return 0;
-        }
-    }
 }
