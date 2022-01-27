@@ -3,9 +3,8 @@ package hexlet.code;
 import hexlet.code.games.CalcGame;
 import hexlet.code.games.EvenGame;
 import hexlet.code.games.GCDGame;
-import hexlet.code.games.GreetGame;
-import hexlet.code.games.PrimeGame;
 import hexlet.code.games.ProgressionGame;
+import hexlet.code.games.PrimeGame;
 
 import java.util.Scanner;
 
@@ -16,38 +15,44 @@ public class App {
         final var evenGame = 2;
         final var calcGame = 3;
         final var gcdGame = 4;
-        final var progression = 5;
-        final var prime = 6;
+        final var progressionGame = 5;
+        final var primeGame = 6;
+        String name;
         introduction();
         Scanner scan = new Scanner(System.in);
         while (scan.hasNextInt()) {
-            var gameNumber = scan.nextInt();
+            int gameNumber = scan.nextInt();
             switch (gameNumber) {
                 case 0:
                     return;
 
                 case greetGame:
-                    GreetGame.getName();
+                    Engine.getName(scan);
                     break;
 
                 case evenGame:
-                    EvenGame.isNumberEvenOrNot();
+                    name = Engine.getName(scan);
+                    Engine.startGame(EvenGame.game(), name, scan);
                     break;
 
                 case calcGame:
-                    CalcGame.randomCalcOperation();
+                    name = Engine.getName(scan);
+                    Engine.startGame(CalcGame.game(), name, scan);
                     break;
 
                 case gcdGame:
-                    GCDGame.gcdGame();
+                    name = Engine.getName(scan);
+                    Engine.startGame(GCDGame.game(), name, scan);
                     break;
 
-                case progression:
-                    ProgressionGame.progressionGame();
+                case progressionGame:
+                    name = Engine.getName(scan);
+                    Engine.startGame(ProgressionGame.game(), name, scan);
                     break;
 
-                case prime:
-                    PrimeGame.primeGame();
+                case primeGame:
+                    name = Engine.getName(scan);
+                    Engine.startGame(PrimeGame.game(), name, scan);
                     break;
 
                 default:
@@ -55,6 +60,7 @@ public class App {
             }
             return;
         }
+        scan.close();
     }
     public static void introduction() {
         System.out.println("/Welcome to the Brain Games!/");

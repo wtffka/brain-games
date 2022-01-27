@@ -1,66 +1,20 @@
 package hexlet.code.games;
-import hexlet.code.Engine;
+import hexlet.code.Utils;
 
-import java.util.Scanner;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class EvenGame {
-    private static final String YES = "yes";
-    private static final String NO = "no";
-    public static void isNumberEvenOrNot() {
-        var name = GreetGame.getName();
-        var rightAnswers = 0;
-        final var diapason = 100; // Диапазон чисел для задачи от 1 до 99
+
+    public static Map<String, String> game() {
+        final var maxValue = 100;
         final var maxRightAnswers = 3;
-        var isCorrect = 0;
-        var a = Engine.newRandomNumber(diapason);
-        Scanner scan = new Scanner(System.in);
+        Map<String, String> map = new LinkedHashMap<>();
+        for (int i = 0; i < maxRightAnswers; i++) {
+            int a = Utils.newRandomNumber(maxValue);
+            map.put(String.valueOf(a), a % 2 == 0 ? "yes" : "no");
+        }
         System.out.println("Answer 'yes' if number even otherwise answer 'no'.");
-        addInformation(a);
-        while (scan.hasNextLine()) {
-            var answer = scan.nextLine();
-            if (answer.equals(YES) || answer.equals(NO)) {
-                boolean even = a % 2 == 0;
-                if (answer.equals(YES)) {
-                    isCorrect = evenGameLogic(even, answer, name);
-                }
-                if (answer.equals(NO)) {
-                    isCorrect = evenGameLogic(!even, answer, name);
-                }
-            } else {
-                System.out.println(answer + " is wrong answer. Please answer correctly 'yes' or 'no'");
-                return;
-            }
-            if (isCorrect == 0) {
-                return;
-            } else {
-                rightAnswers++;
-            }
-            if (rightAnswers == maxRightAnswers) {
-                Engine.congratsPart(name);
-                return;
-            }
-            a = Engine.newRandomNumber(diapason);
-            addInformation(a);
-        }
-    }
-
-    private static void addInformation(int a) {
-        System.out.println("Question: " + a);
-        System.out.print("Your answer: ");
-    }
-
-    public static int evenGameLogic(boolean isEven, String answer, String name) {
-        if (isEven) {
-            System.out.println("Correct!");
-            return 1;
-        } else {
-            if (answer.equals(YES)) {
-                Engine.wrongPart(answer, NO, name);
-            } else {
-                Engine.wrongPart(answer, YES, name);
-            }
-        }
-        return 0;
+        return map;
     }
 }
-

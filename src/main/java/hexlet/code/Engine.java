@@ -1,38 +1,49 @@
 package hexlet.code;
 
-public class Engine {
+import java.util.Map;
+import java.util.Scanner;
 
-    public static int newRandomNumber(int diapason) {
-        var a = (int) ((Math.random() * diapason) + 1);
-        return a;
-    }
+public class Engine {
 
     public static void wrongPart(String answer, String result, String name) {
         System.out.println(answer + " is wrong answer ;(. Correct answer was " + result + ".");
         System.out.println("Let's try again, " + name + "!");
     }
 
+    public static void correctPart() {
+        System.out.println("Correct!");
+    }
+
     public static void congratsPart(String name) {
         System.out.println("Congratulations, " + name + "!");
     }
 
-    public static int calcGameLogic(int answer, int a, int b, int operation, String name) {
-        var result = 0;
-        if (operation == 0) {
-            result = a + b;
-        } else if (operation == 1) {
-            result = a * b;
-        } else if (operation == 2) {
-            result = a - b;
-        } else if (operation > 2) {
-            result = a + b;
+    public static void question(String a) {
+        System.out.println("Question: " + a);
+        System.out.print("Your answer: ");
+    }
+
+    public static String getName(Scanner s) {
+        System.out.println("Welcome to the Brain Games");
+        System.out.print("May I have your name? ");
+        s.nextLine();
+        String name = s.nextLine();
+        System.out.println("Hello, " + name + "!");
+        return name;
+    }
+
+    public static void startGame(Map<String, String> map, String name, Scanner scan) {
+        for (Map.Entry<String, String> s : map.entrySet()) {
+            question(s.getKey());
+            String result = scan.nextLine();
+            String answer = s.getValue();
+            if (result.equals(answer)) {
+                correctPart();
+            } else {
+                wrongPart(result, answer, name);
+                return;
+            }
         }
-        if (result == answer) {
-            System.out.println("Correct!");
-            return 1;
-        } else {
-            Engine.wrongPart(String.valueOf(answer), String.valueOf(result), name);
-            return 0;
-        }
+        congratsPart(name);
     }
 }
