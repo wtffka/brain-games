@@ -8,8 +8,8 @@ public class CalcGame {
 
     public static Map<String, String> game() {
         Map<String, String> map = new LinkedHashMap<>();
-        final var maxValue = 20;
-        final var operationsQuantity = 3;
+        final int maxValue = 5;
+        final int operationsQuantity = 3;
         for (int i = 0; i < operationsQuantity; i++) {
             int randomOperation = Utils.newRandomNumber(operationsQuantity);
             int a = Utils.newRandomNumber(maxValue);
@@ -25,6 +25,11 @@ public class CalcGame {
                 operation = " - ";
                 question = a + operation + b;
                 result = String.valueOf(a - b);
+            }
+            while (map.containsKey(question)) {
+                a = Utils.newRandomNumber(maxValue);
+                b = Utils.newRandomNumber(maxValue);
+                question = a + operation + b;
             }
             map.put(question, result);
         }

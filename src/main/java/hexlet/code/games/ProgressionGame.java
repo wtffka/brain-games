@@ -9,14 +9,21 @@ public class ProgressionGame {
     public static Map<String, String> game() {
 
         Map<String, String> map = new LinkedHashMap<>();
-        final var minProgressionLength = 5;
-        final var maxRightAnswers = 3;
+        final int minProgressionLength = 5;
+        final int maxRightAnswers = 3;
         for (int i = 0; i < maxRightAnswers; i++) {
             int progressionLength = Utils.newRandomNumber(minProgressionLength) + minProgressionLength;
             int step = Utils.newRandomNumber(minProgressionLength);
             int progressionStartNumber = Utils.newRandomNumber(minProgressionLength);
             int missingElement = Utils.newRandomNumber(minProgressionLength - 2) + 1;
             String question = getQuestion(step, progressionStartNumber, missingElement, progressionLength);
+            while (map.containsKey(question)) {
+                progressionLength = Utils.newRandomNumber(minProgressionLength) + minProgressionLength;
+                step = Utils.newRandomNumber(minProgressionLength);
+                progressionStartNumber = Utils.newRandomNumber(minProgressionLength);
+                missingElement = Utils.newRandomNumber(minProgressionLength - 2) + 1;
+                question = getQuestion(step, progressionStartNumber, missingElement, progressionLength);
+            }
             map.put(question, progressionGameLogic(question));
         }
         System.out.println("What number is missing in the progression?");

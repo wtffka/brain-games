@@ -7,12 +7,15 @@ import java.util.Map;
 public class EvenGame {
 
     public static Map<String, String> game() {
-        final var maxValue = 100;
-        final var maxRightAnswers = 3;
+        final int maxValue = 100;
+        final int maxRightAnswers = 3;
         Map<String, String> map = new LinkedHashMap<>();
         for (int i = 0; i < maxRightAnswers; i++) {
-            int a = Utils.newRandomNumber(maxValue);
-            map.put(String.valueOf(a), a % 2 == 0 ? "yes" : "no");
+            String key = String.valueOf(Utils.newRandomNumber(maxValue));
+            while (map.containsKey(key)) {
+                key = String.valueOf(Utils.newRandomNumber(maxValue));
+            }
+            map.put(key, Integer.parseInt(key) % 2 == 0 ? "yes" : "no");
         }
         System.out.println("Answer 'yes' if number even otherwise answer 'no'.");
         return map;

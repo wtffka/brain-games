@@ -7,13 +7,18 @@ import java.util.Map;
 public class GCDGame {
 
     public static Map<String, String> game() {
-        final var maxValue = 100;
-        final var maxRightAnswers = 3;
+        final int maxValue = 100;
+        final int maxRightAnswers = 3;
         Map<String, String> map = new LinkedHashMap<>();
         for (int i = 0; i < maxRightAnswers; i++) {
             int a = Utils.newRandomNumber(maxValue);
             int b = Utils.newRandomNumber(maxValue);
             String question = a + " " + b;
+            while (map.containsKey(question)) {
+                a = Utils.newRandomNumber(maxValue);
+                b = Utils.newRandomNumber(maxValue);
+                question = a + " " + b;
+            }
             String result = String.valueOf(gcdGameLogic(a, b));
             map.put(question, result);
         }
