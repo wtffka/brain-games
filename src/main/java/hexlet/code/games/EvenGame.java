@@ -15,7 +15,7 @@ public class EvenGame {
         Map<String, String> map = new HashMap<>();
         for (int i = 0; i < MAX_RIGHT_ANSWERS; i++) {
             String key = String.valueOf(Utils.newRandomNumber(MAX_VALUE));
-            changeKey(map, key);
+            key = changeKey(map, key);
             map.put(key, Integer.parseInt(key) % 2 == 0 ? "yes" : "no");
         }
         return map;

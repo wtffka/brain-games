@@ -17,7 +17,7 @@ public class GCDGame {
             int a = Utils.newRandomNumber(MAX_VALUE);
             int b = Utils.newRandomNumber(MAX_VALUE);
             String question = a + " " + b;
-            changeKey(map, question);
+            question = changeKey(map, question);
             String result = String.valueOf(calculateResult(a, b));
             map.put(question, result);
         }
