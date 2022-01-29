@@ -1,32 +1,43 @@
 package hexlet.code.games;
 
+import hexlet.code.Engine;
 import hexlet.code.Utils;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class GCDGame {
+    static final int MAX_VALUE = 100;
+    static final int MAX_RIGHT_ANSWERS = 3;
+    static final String GAME_RULES = "Find the greatest common divisor of given numbers.";
 
-    public static Map<String, String> game() {
-        final int maxValue = 100;
-        final int maxRightAnswers = 3;
-        Map<String, String> map = new LinkedHashMap<>();
-        for (int i = 0; i < maxRightAnswers; i++) {
-            int a = Utils.newRandomNumber(maxValue);
-            int b = Utils.newRandomNumber(maxValue);
+    public static Map<String, String> generateData() {
+        Map<String, String> map = new HashMap<>();
+        for (int i = 0; i < MAX_RIGHT_ANSWERS; i++) {
+            int a = Utils.newRandomNumber(MAX_VALUE);
+            int b = Utils.newRandomNumber(MAX_VALUE);
             String question = a + " " + b;
-            while (map.containsKey(question)) {
-                a = Utils.newRandomNumber(maxValue);
-                b = Utils.newRandomNumber(maxValue);
-                question = a + " " + b;
-            }
-            String result = String.valueOf(gcdGameLogic(a, b));
+            changeKey(map, question);
+            String result = String.valueOf(calculateResult(a, b));
             map.put(question, result);
         }
-        System.out.println("Find the greatest common divisor of given numbers.");
         return map;
     }
 
-    public static int gcdGameLogic(int a, int b) {
+    public static void runGame(Scanner s) {
+        Engine.startGame(generateData(), Engine.getName(s), s, GAME_RULES);
+    }
+
+    public static String changeKey(Map<String, String> map, String question) {
+        while (map.containsKey(question)) {
+            int a = Utils.newRandomNumber(MAX_VALUE);
+            int b = Utils.newRandomNumber(MAX_VALUE);
+            question = a + " " + b;
+        }
+        return question;
+    }
+
+    public static int calculateResult(int a, int b) {
         var result = 0;
         if (a == b) {
             return a;

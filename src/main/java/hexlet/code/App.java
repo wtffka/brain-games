@@ -3,56 +3,49 @@ package hexlet.code;
 import hexlet.code.games.CalcGame;
 import hexlet.code.games.EvenGame;
 import hexlet.code.games.GCDGame;
+import hexlet.code.games.GreetGame;
 import hexlet.code.games.ProgressionGame;
 import hexlet.code.games.PrimeGame;
 
 import java.util.Scanner;
 
 public class App {
+    static final int GREET_GAME = 1;
+    static final int EVEN_GAME = 2;
+    static final int CALC_GAME = 3;
+    static final int GCD_GAME = 4;
+    static final int PROGRESSION_GAME = 5;
+    static final int PRIME_GAME = 6;
 
     public static void main(String[] args) {
-        final var greetGame = 1;
-        final var evenGame = 2;
-        final var calcGame = 3;
-        final var gcdGame = 4;
-        final var progressionGame = 5;
-        final var primeGame = 6;
-        String name;
         introduction();
         Scanner scan = new Scanner(System.in);
         while (scan.hasNextInt()) {
             int gameNumber = scan.nextInt();
             switch (gameNumber) {
-                case 0:
-                    return;
 
-                case greetGame:
-                    Engine.getName(scan);
+                case GREET_GAME:
+                    GreetGame.runGame(scan);
                     break;
 
-                case evenGame:
-                    name = Engine.getName(scan);
-                    Engine.startGame(EvenGame.game(), name, scan);
+                case EVEN_GAME:
+                    EvenGame.runGame(scan);
                     break;
 
-                case calcGame:
-                    name = Engine.getName(scan);
-                    Engine.startGame(CalcGame.game(), name, scan);
+                case CALC_GAME:
+                    CalcGame.runGame(scan);
                     break;
 
-                case gcdGame:
-                    name = Engine.getName(scan);
-                    Engine.startGame(GCDGame.game(), name, scan);
+                case GCD_GAME:
+                    GCDGame.runGame(scan);
                     break;
 
-                case progressionGame:
-                    name = Engine.getName(scan);
-                    Engine.startGame(ProgressionGame.game(), name, scan);
+                case PROGRESSION_GAME:
+                    ProgressionGame.runGame(scan);
                     break;
 
-                case primeGame:
-                    name = Engine.getName(scan);
-                    Engine.startGame(PrimeGame.game(), name, scan);
+                case PRIME_GAME:
+                    PrimeGame.runGame(scan);
                     break;
 
                 default:
@@ -62,6 +55,7 @@ public class App {
         }
         scan.close();
     }
+
     public static void introduction() {
         System.out.println("/Welcome to the Brain Games!/");
         System.out.println("Please enter the game number and press Enter.");

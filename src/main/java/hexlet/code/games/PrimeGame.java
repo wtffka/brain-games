@@ -1,35 +1,45 @@
 package hexlet.code.games;
 
+import hexlet.code.Engine;
 import hexlet.code.Utils;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class PrimeGame {
+    static final int MAX_VALUE = 5;
+    static final int MAX_RIGHT_ANSWERS = 3;
+    static final String GAME_RULES = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
-    public static Map<String, String> game() {
+    public static Map<String, String> generateData() {
         Map<String, String> map = new HashMap<>();
-        final int maxValue = 5;
-        final int maxRightAnswers = 3;
-        for (int i = 0; i < maxRightAnswers; i++) {
-            String key = String.valueOf(Utils.newRandomNumber(maxValue));
-            while (map.containsKey(key) || key.equals("1")) {
-                key = String.valueOf(Utils.newRandomNumber(maxValue));
-            }
-            map.put(key, divisors(key) > 0 ? "no" : "yes");
+        for (int i = 0; i < MAX_RIGHT_ANSWERS; i++) {
+            int a = Utils.newRandomNumber(MAX_VALUE);
+            String key = String.valueOf(a);
+            key = changeKey(map, key);
+            map.put(key, divisors(a) > 0 ? "no" : "yes");
         }
-        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
         return map;
     }
 
-    public static int divisors(String a) {
-        int number = Integer.parseInt(a);
+    public static void runGame(Scanner s) {
+        Engine.startGame(generateData(), Engine.getName(s), s, GAME_RULES);
+    }
+
+    public static int divisors(int a) {
         var divisors = 0;
-        for (int i = 2; i < number; i++) {
-            if (number % i == 0) {
+        for (int i = 2; i < a; i++) {
+            if (a % i == 0) {
                 divisors++;
             }
         }
         return divisors;
+    }
+
+    public static String changeKey(Map<String, String> map, String key) {
+        while (map.containsKey(key) || key.equals("1")) {
+            key = String.valueOf(Utils.newRandomNumber(MAX_VALUE));
+        }
+        return key;
     }
 }

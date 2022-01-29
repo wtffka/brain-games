@@ -32,7 +32,8 @@ public class Engine {
         return name;
     }
 
-    public static void startGame(Map<String, String> map, String name, Scanner scan) {
+    public static void startGame(Map<String, String> map, String name, Scanner scan, String rule) {
+        System.out.println(rule);
         for (Map.Entry<String, String> s : map.entrySet()) {
             question(s.getKey());
             String result = scan.nextLine();
