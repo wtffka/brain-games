@@ -4,47 +4,49 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Engine {
+    private static Scanner s = new Scanner(System.in);
 
-    public static void wrongPart(String answer, String result, String name) {
+    private static void youLose(String answer, String result, String name) {
         System.out.println(answer + " is wrong answer ;(. Correct answer was " + result + ".");
         System.out.println("Let's try again, " + name + "!");
     }
 
-    public static void correctPart() {
+    private static void guessedRight() {
         System.out.println("Correct!");
     }
 
-    public static void congratsPart(String name) {
+    private static void youWon(String name) {
         System.out.println("Congratulations, " + name + "!");
     }
 
-    public static void question(String a) {
+    private static void generateQuestion(String a) {
         System.out.println("Question: " + a);
         System.out.print("Your answer: ");
     }
 
-    public static String getName(Scanner s) {
+    public static String getName() {
         System.out.println("Welcome to the Brain Games");
         System.out.print("May I have your name? ");
-        s.nextLine();
         String name = s.nextLine();
         System.out.println("Hello, " + name + "!");
         return name;
     }
 
-    public static void startGame(Map<String, String> map, String name, Scanner scan, String rule) {
+    public static void runGame(Map<String, String> map, String name, String rule) {
         System.out.println(rule);
-        for (Map.Entry<String, String> s : map.entrySet()) {
-            question(s.getKey());
-            String result = scan.nextLine();
-            String answer = s.getValue();
+        for (Map.Entry<String, String> m : map.entrySet()) {
+            generateQuestion(m.getKey());
+            String result = s.nextLine();
+            String answer = m.getValue();
             if (result.equals(answer)) {
-                correctPart();
+                guessedRight();
             } else {
-                wrongPart(result, answer, name);
+                youLose(result, answer, name);
+                s.close();
                 return;
             }
         }
-        congratsPart(name);
+        youWon(name);
+        s.close();
     }
 }

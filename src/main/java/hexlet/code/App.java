@@ -18,34 +18,34 @@ public class App {
     static final int PRIME_GAME = 6;
 
     public static void main(String[] args) {
-        introduction();
+        chooseGame();
         Scanner scan = new Scanner(System.in);
         while (scan.hasNextInt()) {
             int gameNumber = scan.nextInt();
             switch (gameNumber) {
 
                 case GREET_GAME:
-                    GreetGame.runGame(scan);
+                    GreetGame.runGame();
                     break;
 
                 case EVEN_GAME:
-                    EvenGame.runGame(scan);
+                    EvenGame.runGame();
                     break;
 
                 case CALC_GAME:
-                    CalcGame.runGame(scan);
+                    CalcGame.runGame();
                     break;
 
                 case GCD_GAME:
-                    GCDGame.runGame(scan);
+                    GCDGame.runGame();
                     break;
 
                 case PROGRESSION_GAME:
-                    ProgressionGame.runGame(scan);
+                    ProgressionGame.runGame();
                     break;
 
                 case PRIME_GAME:
-                    PrimeGame.runGame(scan);
+                    PrimeGame.runGame();
                     break;
 
                 default:
@@ -56,7 +56,7 @@ public class App {
         scan.close();
     }
 
-    public static void introduction() {
+    public static void chooseGame() {
         System.out.println("/Welcome to the Brain Games!/");
         System.out.println("Please enter the game number and press Enter.");
         System.out.println("1 - Greet");

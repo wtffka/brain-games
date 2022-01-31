@@ -4,40 +4,29 @@ import hexlet.code.Engine;
 import hexlet.code.Utils;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class GCDGame {
     static final int MAX_VALUE = 100;
     static final int MAX_RIGHT_ANSWERS = 3;
     static final String GAME_RULES = "Find the greatest common divisor of given numbers.";
 
-    public static Map<String, String> generateData() {
+    private static Map<String, String> generateData() {
         Map<String, String> map = new HashMap<>();
         for (int i = 0; i < MAX_RIGHT_ANSWERS; i++) {
             int a = Utils.newRandomNumber(MAX_VALUE);
             int b = Utils.newRandomNumber(MAX_VALUE);
             String question = a + " " + b;
-            question = changeKey(map, question);
-            String result = String.valueOf(calculateResult(a, b));
-            map.put(question, result);
+            String answer = String.valueOf(generateAnswer(a, b));
+            map.put(question, answer);
         }
         return map;
     }
 
-    public static void runGame(Scanner s) {
-        Engine.startGame(generateData(), Engine.getName(s), s, GAME_RULES);
+    public static void runGame() {
+        Engine.runGame(generateData(), Engine.getName(), GAME_RULES);
     }
 
-    public static String changeKey(Map<String, String> map, String question) {
-        while (map.containsKey(question)) {
-            int a = Utils.newRandomNumber(MAX_VALUE);
-            int b = Utils.newRandomNumber(MAX_VALUE);
-            question = a + " " + b;
-        }
-        return question;
-    }
-
-    public static int calculateResult(int a, int b) {
+    private static int generateAnswer(int a, int b) {
         var result = 0;
         if (a == b) {
             return a;

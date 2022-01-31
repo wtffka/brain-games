@@ -4,34 +4,33 @@ import hexlet.code.Engine;
 import hexlet.code.Utils;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class CalcGame {
-    static final int MAX_VALUE = 10;
+    static final int MAX_VALUE = 20;
     static final int OPERATIONS_QUANTITY = 3;
+    static final int MAX_RIGHT_ANSWERS = 3;
     static final char[] OPERATIONS = {' ', '+', '*', '-'};
     static final String GAME_RULES = "What is the result of the expression?";
 
-    public static Map<String, String> generateData() {
+    private static Map<String, String> generateData() {
         Map<String, String> map = new HashMap<>();
-        for (int i = 0; i < OPERATIONS_QUANTITY; i++) {
+        for (int i = 0; i < MAX_RIGHT_ANSWERS; i++) {
             int randomOperation = Utils.newRandomNumber(OPERATIONS_QUANTITY);
             String operation = " " + OPERATIONS[randomOperation] + " ";
             int a = Utils.newRandomNumber(MAX_VALUE);
             int b = Utils.newRandomNumber(MAX_VALUE);
             String question = a + operation + b;
-            question = changeKey(map, question, a, b);
-            String result = calculate(a, b, operation);
-            map.put(question, result);
+            String answer = generateAnswer(a, b, operation);
+            map.put(question, answer);
         }
         return map;
     }
 
-    public static void runGame(Scanner s) {
-        Engine.startGame(generateData(), Engine.getName(s), s, GAME_RULES);
+    public static void runGame() {
+        Engine.runGame(generateData(), Engine.getName(), GAME_RULES);
     }
 
-    public static String calculate(int a, int b, String operation) {
+    private static String generateAnswer(int a, int b, String operation) {
         if (operation.equals(" + ")) {
             return String.valueOf(a + b);
         }
@@ -42,20 +41,5 @@ public class CalcGame {
             return String.valueOf(a - b);
         }
         return "";
-    }
-
-    public static String changeKey(Map<String, String> map, String question, int a, int b) {
-        while (map.containsKey(question)) {
-            int randomOperation = Utils.newRandomNumber(OPERATIONS_QUANTITY);
-            if (randomOperation == 1) {
-                question = a + " + " + b;
-            }
-            if (randomOperation == 2) {
-                question = a + " * " + b;
-            } else {
-                question = a + " - " + b;
-            }
-        }
-        return question;
     }
 }
