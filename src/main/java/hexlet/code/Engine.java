@@ -4,18 +4,17 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Engine {
-    private static Scanner s = new Scanner(System.in);
 
-    private static void youLose(String answer, String result, String name) {
+    private static void printWhenPlayerLost(String answer, String result, String name) {
         System.out.println(answer + " is wrong answer ;(. Correct answer was " + result + ".");
         System.out.println("Let's try again, " + name + "!");
     }
 
-    private static void guessedRight() {
+    private static void printWhenCorrectAnswer() {
         System.out.println("Correct!");
     }
 
-    private static void youWon(String name) {
+    private static void printWhenPlayerWin(String name) {
         System.out.println("Congratulations, " + name + "!");
     }
 
@@ -24,29 +23,31 @@ public class Engine {
         System.out.print("Your answer: ");
     }
 
-    public static String getName() {
+    public static String getName(Scanner scanner) {
         System.out.println("Welcome to the Brain Games");
         System.out.print("May I have your name? ");
-        String name = s.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Hello, " + name + "!");
         return name;
     }
 
-    public static void runGame(Map<String, String> map, String name, String rule) {
+    public static void runGame(Map<String, String> roundsData, String rule) {
+        Scanner scanner = new Scanner(System.in);
+        String name = getName(scanner);
         System.out.println(rule);
-        for (Map.Entry<String, String> m : map.entrySet()) {
-            generateQuestion(m.getKey());
-            String result = s.nextLine();
-            String answer = m.getValue();
+        for (Map.Entry<String, String> roundData : roundsData.entrySet()) {
+            generateQuestion(roundData.getKey());
+            String result = scanner.nextLine();
+            String answer = roundData.getValue();
             if (result.equals(answer)) {
-                guessedRight();
+                printWhenCorrectAnswer();
             } else {
-                youLose(result, answer, name);
-                s.close();
+                printWhenPlayerLost(result, answer, name);
+                scanner.close();
                 return;
             }
         }
-        youWon(name);
-        s.close();
+        printWhenPlayerWin(name);
+        scanner.close();
     }
 }

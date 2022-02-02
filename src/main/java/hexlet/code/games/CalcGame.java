@@ -2,43 +2,47 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 import hexlet.code.Utils;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class CalcGame {
     static final int MAX_VALUE = 20;
     static final int OPERATIONS_QUANTITY = 3;
     static final int MAX_RIGHT_ANSWERS = 3;
-    static final char[] OPERATIONS = {' ', '+', '*', '-'};
+    static final char[] OPERATIONS = {'+', '*', '-'};
     static final String GAME_RULES = "What is the result of the expression?";
 
     private static Map<String, String> generateData() {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> roundsData = new LinkedHashMap<>();
         for (int i = 0; i < MAX_RIGHT_ANSWERS; i++) {
-            int randomOperation = Utils.newRandomNumber(OPERATIONS_QUANTITY);
-            String operation = " " + OPERATIONS[randomOperation] + " ";
-            int a = Utils.newRandomNumber(MAX_VALUE);
-            int b = Utils.newRandomNumber(MAX_VALUE);
-            String question = a + operation + b;
-            String answer = generateAnswer(a, b, operation);
-            map.put(question, answer);
+            generateRoundData(roundsData);
         }
-        return map;
+        return roundsData;
+    }
+
+    private static void generateRoundData(Map<String, String> roundsData) {
+        int randomOperation = Utils.generateRandomNumber(OPERATIONS_QUANTITY) - 1;
+        char operation = OPERATIONS[randomOperation];
+        int firstNumber = Utils.generateRandomNumber(MAX_VALUE);
+        int secondNumber = Utils.generateRandomNumber(MAX_VALUE);
+        String question = firstNumber + " " +  operation + " " + secondNumber;
+        String answer = generateAnswer(firstNumber, secondNumber, operation);
+        roundsData.put(question, answer);
     }
 
     public static void runGame() {
-        Engine.runGame(generateData(), Engine.getName(), GAME_RULES);
+        Engine.runGame(generateData(), GAME_RULES);
     }
 
-    private static String generateAnswer(int a, int b, String operation) {
-        if (operation.equals(" + ")) {
-            return String.valueOf(a + b);
+    private static String generateAnswer(int firstNum, int secondNum, char operation) {
+        if (operation == '+') {
+            return String.valueOf(firstNum + secondNum);
         }
-        if (operation.equals(" * ")) {
-            return String.valueOf(a * b);
+        if ((operation == '*')) {
+            return String.valueOf(firstNum * secondNum);
         }
-        if (operation.equals(" - ")) {
-            return String.valueOf(a - b);
+        if ((operation == '-')) {
+            return String.valueOf(firstNum - secondNum);
         }
         return "";
     }

@@ -2,7 +2,7 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 import hexlet.code.Utils;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ProgressionGame {
@@ -11,19 +11,23 @@ public class ProgressionGame {
     static final String GAME_RULES = "What number is missing in the progression?";
 
     private static Map<String, String> generateData() {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> roundsData = new LinkedHashMap<>();
         for (int i = 0; i < MAX_RIGHT_ANSWERS; i++) {
-            int progressionLength = Utils.newRandomNumber(MIN_PROGRESSION_LENGTH) + MIN_PROGRESSION_LENGTH;
-            int step = Utils.newRandomNumber(MIN_PROGRESSION_LENGTH);
-            int progressionStartNumber = Utils.newRandomNumber(MIN_PROGRESSION_LENGTH);
-            int missingElement = Utils.newRandomNumber(MIN_PROGRESSION_LENGTH - 2) + 1;
-            generateQuestion(step, progressionStartNumber, progressionLength, missingElement, map);
+            generateRoundData(roundsData);
         }
-        return map;
+        return roundsData;
+    }
+
+    private static void generateRoundData(Map<String, String> roundsData) {
+        int progressionLength = Utils.generateRandomNumber(MIN_PROGRESSION_LENGTH) + MIN_PROGRESSION_LENGTH;
+        int step = Utils.generateRandomNumber(MIN_PROGRESSION_LENGTH);
+        int progressionStartNumber = Utils.generateRandomNumber(MIN_PROGRESSION_LENGTH);
+        int missingElement = Utils.generateRandomNumber(MIN_PROGRESSION_LENGTH - 2) + 1;
+        generateQuestion(step, progressionStartNumber, progressionLength, missingElement, roundsData);
     }
 
     public static void runGame() {
-        Engine.runGame(generateData(), Engine.getName(), GAME_RULES);
+        Engine.runGame(generateData(), GAME_RULES);
     }
 
     private static void generateQuestion(int progressionStep, int progressionStartNumber, int progressionLength,

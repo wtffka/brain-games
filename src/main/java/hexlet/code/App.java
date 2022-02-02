@@ -18,7 +18,7 @@ public class App {
     static final int PRIME_GAME = 6;
 
     public static void main(String[] args) {
-        chooseGame();
+        printGameMenu();
         Scanner scan = new Scanner(System.in);
         while (scan.hasNextInt()) {
             int gameNumber = scan.nextInt();
@@ -56,7 +56,7 @@ public class App {
         scan.close();
     }
 
-    public static void chooseGame() {
+    public static void printGameMenu() {
         System.out.println("/Welcome to the Brain Games!/");
         System.out.println("Please enter the game number and press Enter.");
         System.out.println("1 - Greet");
