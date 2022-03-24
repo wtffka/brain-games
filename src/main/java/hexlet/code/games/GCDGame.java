@@ -11,6 +11,7 @@ public class GCDGame {
 
     private static final int MAX_VALUE = 100;
     private static Map<String, String> gameData = new LinkedHashMap<>();
+    private static int result = 0;
 
 
     public static Map<String, String> generateGameData(Map<String, String> roundsData) {
@@ -29,21 +30,26 @@ public class GCDGame {
     }
 
     private static int generateAnswer(int firstNum, int secondNum) {
-        var result = 0;
-        if (firstNum == secondNum) {
-            return firstNum;
-        }
         if (firstNum > secondNum) {
-            for (var i = 1; i <= secondNum; i++) {
-                if (firstNum % i == 0 && secondNum % i == 0) {
-                    result = i;
-                }
-            }
+            return whenFirstNumberEqualOrGreaterThanSecond(firstNum, secondNum);
         } else {
-            for (var i = 1; i <= firstNum; i++) {
-                if (firstNum % i == 0 && secondNum % i == 0) {
-                    result = i;
-                }
+            return whenFirstNumberEqualOrLessThanSecond(firstNum, secondNum);
+        }
+    }
+
+    private static int whenFirstNumberEqualOrGreaterThanSecond(int firstNumber, int secondNumber) {
+        for (var i = 1; i <= secondNumber; i++) {
+            if (firstNumber % i == 0 && secondNumber % i == 0) {
+                result = i;
+            }
+        }
+        return result;
+    }
+
+    private static int whenFirstNumberEqualOrLessThanSecond(int firstNumber, int secondNumber) {
+        for (var i = 1; i <= firstNumber; i++) {
+            if (firstNumber % i == 0 && secondNumber % i == 0) {
+                result = i;
             }
         }
         return result;
