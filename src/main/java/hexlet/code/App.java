@@ -1,8 +1,8 @@
 package hexlet.code;
 
 import hexlet.code.games.CalcGame;
-import hexlet.code.games.EvenGame;
 import hexlet.code.games.GCDGame;
+import hexlet.code.games.EvenGame;
 import hexlet.code.games.GreetGame;
 import hexlet.code.games.ProgressionGame;
 import hexlet.code.games.PrimeGame;
@@ -10,12 +10,6 @@ import hexlet.code.games.PrimeGame;
 import java.util.Scanner;
 
 public class App {
-    static final int GREET_GAME = 1;
-    static final int EVEN_GAME = 2;
-    static final int CALC_GAME = 3;
-    static final int GCD_GAME = 4;
-    static final int PROGRESSION_GAME = 5;
-    static final int PRIME_GAME = 6;
 
     public static void main(String[] args) {
         printGameMenu();
@@ -24,27 +18,27 @@ public class App {
             int gameNumber = scan.nextInt();
             switch (gameNumber) {
 
-                case GREET_GAME:
+                case Constants.GREET_GAME:
                     GreetGame.runGame();
                     break;
 
-                case EVEN_GAME:
+                case Constants.EVEN_GAME:
                     EvenGame.runGame();
                     break;
 
-                case CALC_GAME:
+                case Constants.CALC_GAME:
                     CalcGame.runGame();
                     break;
 
-                case GCD_GAME:
+                case Constants.GCD_GAME:
                     GCDGame.runGame();
                     break;
-
-                case PROGRESSION_GAME:
+//
+                case Constants.PROGRESSION_GAME:
                     ProgressionGame.runGame();
                     break;
 
-                case PRIME_GAME:
+                case Constants.PRIME_GAME:
                     PrimeGame.runGame();
                     break;
 

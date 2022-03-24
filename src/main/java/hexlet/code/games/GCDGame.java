@@ -1,33 +1,31 @@
 package hexlet.code.games;
 
+import hexlet.code.Constants;
 import hexlet.code.Engine;
 import hexlet.code.Utils;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GCDGame {
-    static final int MAX_VALUE = 100;
-    static final int MAX_RIGHT_ANSWERS = 3;
-    static final String GAME_RULES = "Find the greatest common divisor of given numbers.";
 
-    private static Map<String, String> generateData() {
-        Map<String, String> roundsData = new LinkedHashMap<>();
-        for (int i = 0; i < MAX_RIGHT_ANSWERS; i++) {
-            generateRoundData(roundsData);
+    private static final int MAX_VALUE = 100;
+    private static Map<String, String> gameData = new LinkedHashMap<>();
+
+
+    public static Map<String, String> generateGameData(Map<String, String> roundsData) {
+        for (int i = 0; i < Constants.MAX_RIGHT_ANSWERS; i++) {
+            int firstNum = Utils.generateRandomNumber(MAX_VALUE);
+            int secondNum = Utils.generateRandomNumber(MAX_VALUE);
+            String question = firstNum + " " + secondNum;
+            String answer = String.valueOf(generateAnswer(firstNum, secondNum));
+            roundsData.put(question, answer);
         }
         return roundsData;
     }
 
-    private static void generateRoundData(Map<String, String> roundsData) {
-        int firstNum = Utils.generateRandomNumber(MAX_VALUE);
-        int secondNum = Utils.generateRandomNumber(MAX_VALUE);
-        String question = firstNum + " " + secondNum;
-        String answer = String.valueOf(generateAnswer(firstNum, secondNum));
-        roundsData.put(question, answer);
-    }
-
     public static void runGame() {
-        Engine.runGame(generateData(), GAME_RULES);
+        Engine.runGame(generateGameData(gameData), Constants.GCD_GAME_RULE);
     }
 
     private static int generateAnswer(int firstNum, int secondNum) {
