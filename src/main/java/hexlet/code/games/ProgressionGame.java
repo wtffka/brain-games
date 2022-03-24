@@ -6,6 +6,8 @@ import hexlet.code.Utils;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.LinkedList;
 
 public class ProgressionGame {
 
@@ -18,7 +20,8 @@ public class ProgressionGame {
             int step = Utils.generateRandomNumber(MIN_PROGRESSION_LENGTH);
             int progressionStartNumber = Utils.generateRandomNumber(MIN_PROGRESSION_LENGTH);
             int missingElement = Utils.generateRandomNumber(MIN_PROGRESSION_LENGTH - 2) + 1;
-            generateQuestion(step, progressionStartNumber, progressionLength, missingElement, roundsData);
+            List<String> roundList = generateQuestion(step, progressionStartNumber, progressionLength, missingElement);
+            roundsData.put(roundList.get(0), roundList.get(1));
         }
         return roundsData;
     }
@@ -27,21 +30,23 @@ public class ProgressionGame {
         Engine.runGame(generateGameData(gameData), Constants.PROGRESSION_GAME_RULE);
     }
 
-    private static void generateQuestion(int progressionStep, int progressionStartNumber, int progressionLength,
-                                          int progressionMissingElement, Map<String, String> map) {
+    private static List<String> generateQuestion(int progressionStep, int progressionStartNumber, int progressionLength,
+                                          int progressionMissingElement) {
+        List<String> dataList = new LinkedList<>();
         int result = progressionStartNumber;
         String question = String.valueOf(result);
         String answer = "";
         for (var i = 1; i < progressionLength; i++) {
             result = result + progressionStep;
             if (i == progressionMissingElement) {
-                question = question + " " + "..";
+                question = question + " ..";
                 answer = String.valueOf(result);
             } else {
                 question = question + " " + result;
             }
         }
-        map.put(question, answer);
+        dataList.add(question);
+        dataList.add(answer);
+        return dataList;
     }
-
 }

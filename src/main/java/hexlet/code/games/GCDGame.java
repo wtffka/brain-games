@@ -30,24 +30,15 @@ public class GCDGame {
     }
 
     private static int generateAnswer(int firstNum, int secondNum) {
-        if (firstNum > secondNum) {
-            return whenFirstNumberEqualOrGreaterThanSecond(firstNum, secondNum);
+        if (firstNum >= secondNum) {
+            return calculateGCD(firstNum, secondNum);
         } else {
-            return whenFirstNumberEqualOrLessThanSecond(firstNum, secondNum);
+            return calculateGCD(secondNum, firstNum);
         }
     }
 
-    private static int whenFirstNumberEqualOrGreaterThanSecond(int firstNumber, int secondNumber) {
+    private static int calculateGCD(int firstNumber, int secondNumber) {
         for (var i = 1; i <= secondNumber; i++) {
-            if (firstNumber % i == 0 && secondNumber % i == 0) {
-                result = i;
-            }
-        }
-        return result;
-    }
-
-    private static int whenFirstNumberEqualOrLessThanSecond(int firstNumber, int secondNumber) {
-        for (var i = 1; i <= firstNumber; i++) {
             if (firstNumber % i == 0 && secondNumber % i == 0) {
                 result = i;
             }

@@ -16,41 +16,13 @@ public class App {
         Scanner scan = new Scanner(System.in);
         while (scan.hasNextInt()) {
             int gameNumber = scan.nextInt();
-            switch (gameNumber) {
-
-                case Constants.GREET_GAME:
-                    GreetGame.runGame();
-                    break;
-
-                case Constants.EVEN_GAME:
-                    EvenGame.runGame();
-                    break;
-
-                case Constants.CALC_GAME:
-                    CalcGame.runGame();
-                    break;
-
-                case Constants.GCD_GAME:
-                    GCDGame.runGame();
-                    break;
-//
-                case Constants.PROGRESSION_GAME:
-                    ProgressionGame.runGame();
-                    break;
-
-                case Constants.PRIME_GAME:
-                    PrimeGame.runGame();
-                    break;
-
-                default:
-                    return;
-            }
+            chooseGameMenu(gameNumber);
             return;
         }
         scan.close();
     }
 
-    public static void printGameMenu() {
+    private static void printGameMenu() {
         System.out.println("/Welcome to the Brain Games!/");
         System.out.println("Please enter the game number and press Enter.");
         System.out.println("1 - Greet");
@@ -61,6 +33,38 @@ public class App {
         System.out.println("6 - Prime");
         System.out.println("0 - Exit");
         System.out.print("Your choice: ");
+    }
+
+    private static void chooseGameMenu(int gameNumber) {
+        switch (gameNumber) {
+
+            case Constants.GREET_GAME:
+                GreetGame.runGame();
+                break;
+
+            case Constants.EVEN_GAME:
+                EvenGame.runGame();
+                break;
+
+            case Constants.CALC_GAME:
+                CalcGame.runGame();
+                break;
+
+            case Constants.GCD_GAME:
+                GCDGame.runGame();
+                break;
+
+            case Constants.PROGRESSION_GAME:
+                ProgressionGame.runGame();
+                break;
+
+            case Constants.PRIME_GAME:
+                PrimeGame.runGame();
+                break;
+
+            default:
+                return;
+        }
     }
 }
 
